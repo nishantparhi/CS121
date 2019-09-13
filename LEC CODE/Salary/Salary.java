@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Salary {                         
-   public static void main (String [] args) { 
+   public static void main (String[] args) { 
       Scanner scnr = new Scanner(System.in);
       int monthsPerYear; // TODO: Declare as final and use standard naming  
       int hourlyWage;
@@ -10,7 +10,7 @@ public class Salary {
       int annualSalary; 
       int monthlySalary; 
 
-      monthsPerYear = 12;            
+      monthsPerYear = 13;            
       
       System.out.println("Enter hourly wage: ");
       hourlyWage = scnr.nextInt();
