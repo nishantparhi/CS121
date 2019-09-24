@@ -12,12 +12,14 @@ s#i0
 s#k0
 s#j0
 s#l0
-!78;u
-a1	b68	c255	f%\011First Code.jar	g%\011First Code.zip	hManifest-Version\0111.0!54;g
-%\011Salary3.java
-%\011Salary2.java
-%\011Salary1.java
-!54;f
-%\011Salary3.java
-%\011Salary2.java
-%\011Salary1.java
+!91;u
+a1	b68	c11	f%\011SalaryCalcProject.jar	g%\011SalaryCalcProject.zip	hManifest-Version\0111.0!57;g
+%\011SalaryCalculatorApp.java
+%\011SalaryCalculator.java
+!57;f
+%\011SalaryCalculatorApp.java
+%\011SalaryCalculator.java
+!31;l
+%\011SalaryCalculatorTest.java
+!159;t
+jgrJUnit0xr	%\011SalaryCalculator.java	1568987672477:F%\011SalaryCalculatorTest.java	%\011SalaryCalculatorTest.java	1568987672477:F%\011SalaryCalculator.java	
