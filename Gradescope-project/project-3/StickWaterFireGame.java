@@ -48,8 +48,13 @@ public class StickWaterFireGame {
    */    
    public StickWaterFireGame(int seed) {
       // First, assign rand to a new Random object using the seed passed in.
+      rand = new Random(seed);
       // Then, initialize rounds, playerScore and computerScore to 0.
+      rounds = 0;
+      playerScore = 0;
+      computerScore = 0;
       // Finally, initialize computerChoice to an empty string.
+      computerChoice = "";
    }   
    
   /*  This secondary constructor does the same things the first one does,
@@ -57,8 +62,13 @@ public class StickWaterFireGame {
    */
    public StickWaterFireGame() {
       // First, assign rand to a new Random object.
+      rand = new Random();
       // Then, initialize rounds, playerScore and computerScore to 0.
+      rounds = 0;
+      playerScore = 0;
+      computerScore = 0;
       // Finally, initialize computerChoice to an empty string.
+      computerChoice = "";
    }
     
   /*  This method carries out a single round of play of the SWF game. 
@@ -75,15 +85,56 @@ public class StickWaterFireGame {
    */
    public void playRound(String playerChoice) {
       // First, get the computer's choice by calling the getRandomChoice() method.
-      
+      computerChoice = getRandomChoice();
       // Then, check if the player's input is valid using isValidInput and increment the computer's score if invalid.
-      
-     /*  Next, compare the computer choice to the player's choice, and determines who wins 
-      *  a round of play according to the rules of the game. Update the player and computer 
-      *  scores as necessary.
-      */
+      /* Next, compare the computer choice to the player's choice, and determines who wins 
+       *  a round of play according to the rules of the game. Update the player and computer 
+       *  scores as necessary.
+       */
+      if(!isValidInput(playerChoice)){
+         computerScore += 1;
+      } else { // Put the steps here to avoid the crash by the invalid input.
+         if(computerChoice.equals("S") || computerChoice.equals("s")){
+            if(playerChoice.equals("S") || playerChoice.equals("s")){
+               // Tie
+            } else if(playerChoice.equals("W") || playerChoice.equals("w")){
+               // lost
+               computerScore += 1;
+            } else if(playerChoice.equals("F") || playerChoice.equals("f")){
+               // won
+               playerScore += 1;
+            } else {
+
+            }
+         } else if(computerChoice.equals("W") || computerChoice.equals("w")){
+            if(playerChoice.equals("S") || playerChoice.equals("s")){
+               // won
+               playerScore += 1;
+            } else if(playerChoice.equals("W") || playerChoice.equals("w")){
+               // Tie
+            } else if(playerChoice.equals("F") || playerChoice.equals("f")){
+               // lost
+               computerScore += 1;
+            } else {
+
+            }
+         } else if(computerChoice.equals("F") || computerChoice.equals("f")){
+            if(playerChoice.equals("S") || playerChoice.equals("s")){
+               // lost
+               computerScore += 1;
+            } else if(playerChoice.equals("W") || playerChoice.equals("w")){
+               // won
+               playerScore += 1;
+            } else if(playerChoice.equals("F") || playerChoice.equals("f")){
+               // Tie
+            } else {
+
+            }
+         }
+      }
       
       // Finally, increment the number of rounds of play.
+      rounds += 1;
    }
 
   /*  This method returns true if the inputStr passed in is
@@ -91,32 +142,55 @@ public class StickWaterFireGame {
    */
    public boolean isValidInput(String inputStr) {
       // Try to do this method in one line, using only a single return statement and boolean opperators
-      return false;
+      if(inputStr.equals("S") || inputStr.equals("W") || inputStr.equals("F") || inputStr.equals("s") || inputStr.equals("w") || inputStr.equals("f")){
+         return true; 
+      } else {
+         return false;
+      }
    }
     
    // Returns the choice of the computer for the most recent round of play
    public String getComputerChoice(){
-      return "";
+      return computerChoice;
    }
 
    // Returns true if the player has a higher score, false otherwise.    
    public boolean playerWinning(){
-      return false;
+      if(playerScore > computerScore){
+         // Player won
+         return true;
+      } else {
+         // Player lost
+         return false;
+      }
    }
 
    // Returns true if the computer has a higher score, false otherwise.    
    public boolean computerWinning() {
-      return false;
+      if(computerScore > playerScore){
+         // Computer won
+         return true;
+      } else {
+         // Computer lost
+         return false;
+      }
    }
 
    // Returns true if the player and computer have the same score, false otherwise.    
    public boolean isTie(){
-      return false;
+      if(computerScore == playerScore){
+         // tie
+         return true;
+      } else {
+         // not tie
+         return false;
+      }
    }
 
    // Returns the number of rounds, the player's current score, and the computer's current score in a readable String format.    
    public String getScoreReportStr(){
-      return "";
+      String returnValue = "[[[Output]]]\nRounds: " + rounds + "\nComputer's Score: " + computerScore + "\nPlayer's Score: " + playerScore;
+      return returnValue;
    }
 
   /*  This "helper" method uses the instance of Random to generate an integer
@@ -124,6 +198,14 @@ public class StickWaterFireGame {
    *  This method is called by the playRound method.
    */
    private String getRandomChoice() {
-      return "";
+      int newRandomNum = rand.nextInt(3);
+      if(newRandomNum == 0){
+         return "S";
+      } else if(newRandomNum == 1){
+         return "W";
+      } else {
+         return "F";
+      }
+      // To avoid calling another return outside the if.
    }
 }
